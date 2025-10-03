@@ -1,53 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ariba Impex — Premium Bags Manufacturer</title>
   <meta name="description" content="Premium manufacturer of school bags, jute bags, and foam bags. Custom designs and bulk orders available.">
+  <meta name="keywords" content="school bags, jute bags, foam bags, custom bags, premium bags, manufacturer, Ariba Impex">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Ariba Impex — Premium Bags Manufacturer">
+  <meta property="og:description" content="Premium manufacturer of school bags, jute bags, and foam bags. Custom designs and bulk orders available.">
+  <meta property="og:image" content="logo.jpg">
+  <meta property="og:url" content="https://www.aribaimpex.in">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <link rel="icon" type="image/png" href="logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+    }
     
+    /* Preloader */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    #preloader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader {
+      width: 60px;
+      height: 60px;
+      border: 5px solid #3b82f6;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Dark mode */
+    .dark {
+      background-color: #1f2937;
+      color: #f3f4f6;
+    }
+
+    .dark .bg-white { background-color: #374151; }
+    .dark .bg-gray-50 { background-color: #1f2937; }
+    .dark .text-gray-800 { color: #f3f4f6; }
+    .dark .text-gray-700 { color: #d1d5db; }
+    .dark .text-gray-600 { color: #9ca3af; }
+    .dark .bg-gradient-to-br.from-gray-50.to-white { background: #374151; }
+    .dark .bg-blue-50 { background: #1e3a8a; }
+    .dark .border-gray-100 { border-color: #4b5563; }
+    .dark .card-hover:hover { box-shadow: 0 25px 50px rgba(255, 255, 255, 0.1); }
+
+    /* Enhanced existing animations */
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-20px); }
     }
-    
+
     .float-animation { animation: float 6s ease-in-out infinite; }
-    
+
     @keyframes gradient {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
     }
-    
+
     .animated-gradient {
       background-size: 200% 200%;
       animation: gradient 8s ease infinite;
     }
-    
+
     @keyframes shimmer {
       0% { background-position: -1000px 0; }
       100% { background-position: 1000px 0; }
     }
-    
+
     .shimmer {
       background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
       background-size: 1000px 100%;
       animation: shimmer 3s infinite;
     }
-    
+
     .card-hover {
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
     }
-    
+
     .card-hover::before {
       content: '';
       position: absolute;
@@ -58,61 +116,61 @@
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
       transition: left 0.5s;
     }
-    
+
     .card-hover:hover::before {
       left: 100%;
     }
-    
+
     .card-hover:hover {
       transform: translateY(-12px) scale(1.02);
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
     }
-    
+
     .mobile-menu {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
+
     .mobile-menu.active {
       max-height: 500px;
     }
-    
+
     .reveal {
       opacity: 0;
       transform: translateY(30px);
       transition: all 0.6s ease-out;
     }
-    
+
     .reveal.active {
       opacity: 1;
       transform: translateY(0);
     }
-    
+
     .parallax {
       transform: translateZ(0);
       will-change: transform;
     }
-    
+
     @keyframes pulse-slow {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.5; }
     }
-    
+
     .pulse-slow {
       animation: pulse-slow 4s ease-in-out infinite;
     }
-    
+
     .glass-effect {
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    
+
     .product-card {
       transition: all 0.4s ease;
     }
-    
+
     .product-card.hidden {
       opacity: 0;
       transform: scale(0.8);
@@ -121,7 +179,7 @@
       padding: 0;
       overflow: hidden;
     }
-    
+
     @keyframes fade-in-up {
       from {
         opacity: 0;
@@ -132,90 +190,109 @@
         transform: translateY(0);
       }
     }
-    
+
     .animate-fade-in-up {
       animation: fade-in-up 0.6s ease-out forwards;
     }
-    
+
     .stat-number {
       display: inline-block;
       transition: transform 0.3s ease;
     }
-    
+
     .stat-number:hover {
       transform: scale(1.1);
+    }
+
+    /* Contact form */
+    .form-input {
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-error {
+      border-color: #ef4444 !important;
     }
   </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-50 text-gray-800 transition-colors duration-300">
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
 
   <!-- Header -->
-  <header class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300" id="header">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-      
-      <a href="#home" class="flex items-center space-x-3 group">
-        <img src="logo.jpg" alt="Ariba Impex Logo" class="h-10 w-auto transition-transform group-hover:scale-110 group-hover:rotate-3" />
-        <h1 class="text-2xl md:text-3xl font-bold text-blue-700 transition-colors group-hover:text-blue-600">Ariba Impex</h1>
+  <header class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300 dark:bg-gray-800" id="header" role="banner">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
+      <a href="#home" class="flex items-center space-x-3 group" aria-label="Ariba Impex Home">
+        <img src="logo.jpg" alt="Ariba Impex Logo" class="h-10 w-auto transition-transform group-hover:scale-110 group-hover:rotate-3" loading="lazy" />
+        <h1 class="text-2xl md:text-3xl font-bold text-blue-700 transition-colors group-hover:text-blue-600 dark:text-blue-400 dark:group-hover:text-blue-300">Ariba Impex</h1>
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex space-x-6 text-gray-700 font-medium">
-        <a href="#home" class="hover:text-blue-600 transition-colors duration-200 relative group py-2">
-          Home
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+      <nav class="hidden md:flex space-x-6 text-gray-700 font-medium dark:text-gray-200" role="navigation">
+        <a href="#home" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 relative group py-2">Home
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
         </a>
-        <a href="#about" class="hover:text-blue-600 transition-colors duration-200 relative group py-2">
-          About
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+        <a href="#about" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 relative group py-2">About
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
         </a>
-        <a href="#products" class="hover:text-blue-600 transition-colors duration-200 relative group py-2">
-          Products
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+        <a href="#products" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 relative group py-2">Products
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
         </a>
-        <a href="#testimonials" class="hover:text-blue-600 transition-colors duration-200 relative group py-2">
-          Testimonials
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+        <a href="#testimonials" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 relative group py-2">Testimonials
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
         </a>
-        <a href="#contact" class="hover:text-blue-600 transition-colors duration-200 relative group py-2">
-          Contact
-          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+        <a href="#contact" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 relative group py-2">Contact
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
         </a>
       </nav>
 
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded p-1" aria-label="Toggle menu">
-        <svg class="w-6 h-6 transition-transform duration-300" id="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </button>
+      <!-- Dark Mode Toggle and Mobile Menu Button -->
+      <div class="flex items-center space-x-4">
+        <button id="dark-mode-toggle" class="text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded p-1" aria-label="Toggle dark mode">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+        </button>
+        <button id="mobile-menu-btn" class="md:hidden text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded p-1" aria-label="Toggle menu" aria-expanded="false">
+          <svg class="w-6 h-6 transition-transform duration-300" id="menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
     </div>
 
     <!-- Mobile Navigation -->
-    <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t">
-      <nav class="flex flex-col px-6 py-4 space-y-3">
-        <a href="#home" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded transition-all mobile-link">Home</a>
-        <a href="#about" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded transition-all mobile-link">About</a>
-        <a href="#products" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded transition-all mobile-link">Products</a>
-        <a href="#testimonials" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded transition-all mobile-link">Testimonials</a>
-        <a href="#contact" class="text-gray-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded transition-all mobile-link">Contact</a>
+    <div id="mobile-menu" class="mobile-menu md:hidden bg-white dark:bg-gray-800 border-t">
+      <nav class="flex flex-col px-4 sm:px-6 py-4 space-y-3" role="navigation">
+        <a href="#home" class="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900 px-3 py-2 rounded transition-all mobile-link">Home</a>
+        <a href="#about" class="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900 px-3 py-2 rounded transition-all mobile-link">About</a>
+        <a href="#products" class="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900 px-3 py-2 rounded transition-all mobile-link">Products</a>
+        <a href="#testimonials" class="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900 px-3 py-2 rounded transition-all mobile-link">Testimonials</a>
+        <a href="#contact" class="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900 px-3 py-2 rounded transition-all mobile-link">Contact</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero -->
-  <section id="home" class="relative bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400 animated-gradient text-white py-24 md:py-32 overflow-hidden">
+  <section id="home" class="relative bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400 animated-gradient text-white py-24 md:py-32 overflow-hidden parallax" aria-labelledby="hero-heading">
     <div class="absolute inset-0 opacity-10">
       <div class="absolute top-20 right-20 w-64 h-64 bg-white rounded-full blur-3xl pulse-slow"></div>
       <div class="absolute bottom-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl pulse-slow" style="animation-delay: 2s;"></div>
     </div>
     
-    <div class="max-w-6xl mx-auto px-6 text-center relative z-10" data-aos="fade-up" data-aos-duration="1000">
-      <h2 class="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg leading-tight">High-Quality Bags,<br><span class="text-blue-100">Made to Last</span></h2>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10" data-aos="fade-up" data-aos-duration="1000">
+      <h2 id="hero-heading" class="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg leading-tight">High-Quality Bags,<br><span class="text-blue-100">Made to Last</span></h2>
       <p class="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto leading-relaxed">We specialize in school bags, jute bags, foam bags & custom designs with premium craftsmanship</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#products" class="inline-block bg-white text-blue-700 font-bold px-8 py-4 rounded-full shadow-lg transform hover:scale-105 transition-all hover:shadow-2xl hover:bg-blue-50">Explore Products</a>
-        <a href="#contact" class="inline-block bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-full shadow-lg transform hover:scale-105 transition-all hover:bg-white hover:text-blue-700">Get in Touch</a>
+        <a href="#products" class="inline-block bg-white text-blue-700 font-bold px-8 py-4 rounded-full shadow-lg transform hover:scale-105 transition-all hover:shadow-2xl hover:bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700" aria-label="Explore our products">Explore Products</a>
+        <a href="#contact" class="inline-block bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-full shadow-lg transform hover:scale-105 transition-all hover:bg-white hover:text-blue-700 dark:hover:bg-gray-800 dark:hover:text-blue-400" aria-label="Contact us">Get in Touch</a>
       </div>
     </div>
     
@@ -223,58 +300,59 @@
   </section>
 
   <!-- Stats Section -->
-  <section class="py-12 bg-white border-b">
-    <div class="max-w-7xl mx-auto px-6">
+  <section class="py-12 bg-white dark:bg-gray-800 border-b" aria-labelledby="stats-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <h2 id="stats-heading" class="sr-only">Company Statistics</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div data-aos="fade-up" data-aos-delay="100" class="transform hover:scale-105 transition-transform">
-          <div class="text-4xl font-bold text-blue-700 mb-2 stat-number">500+</div>
-          <div class="text-gray-600">Happy Clients</div>
+          <div class="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2 stat-number">500+</div>
+          <div class="text-gray-600 dark:text-gray-300">Happy Clients</div>
         </div>
         <div data-aos="fade-up" data-aos-delay="200" class="transform hover:scale-105 transition-transform">
-          <div class="text-4xl font-bold text-blue-700 mb-2 stat-number">50K+</div>
-          <div class="text-gray-600">Bags Delivered</div>
+          <div class="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2 stat-number">50K+</div>
+          <div class="text-gray-600 dark:text-gray-300">Bags Delivered</div>
         </div>
         <div data-aos="fade-up" data-aos-delay="300" class="transform hover:scale-105 transition-transform">
-          <div class="text-4xl font-bold text-blue-700 mb-2 stat-number">15+</div>
-          <div class="text-gray-600">Years Experience</div>
+          <div class="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2 stat-number">15+</div>
+          <div class="text-gray-600 dark:text-gray-300">Years Experience</div>
         </div>
         <div data-aos="fade-up" data-aos-delay="400" class="transform hover:scale-105 transition-transform">
-          <div class="text-4xl font-bold text-blue-700 mb-2 stat-number">100%</div>
-          <div class="text-gray-600">Quality Assured</div>
+          <div class="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2 stat-number">100%</div>
+          <div class="text-gray-600 dark:text-gray-300">Quality Assured</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about" class="py-20 bg-gradient-to-br from-gray-50 to-white">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+  <section id="about" class="py-20 bg-gradient-to-br from-gray-50 to-white dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-700" aria-labelledby="about-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 items-center">
       <div data-aos="fade-right" data-aos-duration="800" class="float-animation">
-        <img src="1.jpg" alt="Bag Manufacturing" class="rounded-2xl shadow-2xl w-full h-auto hover:shadow-3xl transition-shadow duration-300" />
+        <img src="1.jpg" alt="Bag Manufacturing" class="rounded-2xl shadow-2xl w-full h-auto hover:shadow-3xl transition-shadow duration-300" loading="lazy" data-src="1.jpg" />
       </div>
       <div data-aos="fade-left" data-aos-duration="800">
-        <h3 class="text-4xl md:text-5xl font-bold text-blue-700 mb-6">Why Choose Ariba Impex?</h3>
-        <p class="text-lg leading-relaxed mb-6 text-gray-700">At Ariba Impex, we combine craftsmanship, sustainable materials, and precise quality control to deliver bags that last. Our products align with both style and utility.</p>
+        <h3 id="about-heading" class="text-4xl md:text-5xl font-bold text-blue-700 dark:text-blue-400 mb-6">Why Choose Ariba Impex?</h3>
+        <p class="text-lg leading-relaxed mb-6 text-gray-700 dark:text-gray-300">At Ariba Impex, we combine craftsmanship, sustainable materials, and precise quality control to deliver bags that last. Our products align with both style and utility.</p>
         <div class="space-y-4">
-          <div class="flex items-start bg-white p-5 rounded-lg shadow-md card-hover border-l-4 border-blue-600">
+          <div class="flex items-start bg-white dark:bg-gray-700 p-5 rounded-lg shadow-md card-hover border-l-4 border-blue-600">
             <span class="text-3xl mr-4">🌱</span>
             <div>
-              <h4 class="font-semibold text-lg mb-1 text-blue-700">Eco-Friendly Materials</h4>
-              <p class="text-gray-600">Sustainable and durable materials for a better tomorrow</p>
+              <h4 class="font-semibold text-lg mb-1 text-blue-700 dark:text-blue-400">Eco-Friendly Materials</h4>
+              <p class="text-gray-600 dark:text-gray-300">Sustainable and durable materials for a better tomorrow</p>
             </div>
           </div>
-          <div class="flex items-start bg-white p-5 rounded-lg shadow-md card-hover border-l-4 border-blue-600">
+          <div class="flex items-start bg-white dark:bg-gray-700 p-5 rounded-lg shadow-md card-hover border-l-4 border-blue-600">
             <span class="text-3xl mr-4">✨</span>
             <div>
-              <h4 class="font-semibold text-lg mb-1 text-blue-700">Custom Designs</h4>
-              <p class="text-gray-600">Tailored solutions for bulk orders and special requirements</p>
+              <h4 class="font-semibold text-lg mb-1 text-blue-700 dark:text-blue-400">Custom Designs</h4>
+              <p class="text-gray-600 dark:text-gray-300">Tailored solutions for bulk orders and special requirements</p>
             </div>
           </div>
-          <div class="flex items-start bg-white p-5 rounded-lg shadow-md card-hover border-l-4 border-blue-600">
+          <div class="flex items-start bg-white dark:bg-gray-700 p-5 rounded-lg shadow-md card-hover border-l-4 border-blue-600">
             <span class="text-3xl mr-4">✓</span>
             <div>
-              <h4 class="font-semibold text-lg mb-1 text-blue-700">Quality Assurance</h4>
-              <p class="text-gray-600">Strict quality checks and timely delivery guaranteed</p>
+              <h4 class="font-semibold text-lg mb-1 text-blue-700 dark:text-blue-400">Quality Assurance</h4>
+              <p class="text-gray-600 dark:text-gray-300">Strict quality checks and timely delivery guaranteed</p>
             </div>
           </div>
         </div>
@@ -283,30 +361,30 @@
   </section>
 
   <!-- Products -->
-  <section id="products" class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-6">
+  <section id="products" class="py-24 bg-white dark:bg-gray-800" aria-labelledby="products-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-12">
-        <h3 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4" data-aos="fade-up">Our Premium Products</h3>
-        <p class="text-gray-600 text-lg mb-8" data-aos="fade-up" data-aos-delay="100">Browse our range of high-quality bags & custom options</p>
+        <h3 id="products-heading" class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-gray-200 mb-4" data-aos="fade-up">Our Premium Products</h3>
+        <p class="text-gray-600 dark:text-gray-300 text-lg mb-8" data-aos="fade-up" data-aos-delay="100">Browse our range of high-quality bags & custom options</p>
         
-        <div class="inline-flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up" data-aos-delay="200">
-          <button class="filter-btn px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all shadow-md hover:shadow-lg transform hover:scale-105" data-filter="all">All Products</button>
-          <button class="filter-btn px-6 py-3 bg-gray-200 text-gray-800 rounded-full hover:bg-gray-300 transition-all transform hover:scale-105" data-filter="school">School Bags</button>
-          <button class="filter-btn px-6 py-3 bg-gray-200 text-gray-800 rounded-full hover:bg-gray-300 transition-all transform hover:scale-105" data-filter="jute">Jute Bags</button>
-          <button class="filter-btn px-6 py-3 bg-gray-200 text-gray-800 rounded-full hover:bg-gray-300 transition-all transform hover:scale-105" data-filter="foam">Foam Bags</button>
+        <div class="inline-flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up" data-aos-delay="200" role="tablist">
+          <button class="filter-btn px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 dark:hover:bg-blue-500 transition-all shadow-md hover:shadow-lg transform hover:scale-105" data-filter="all" role="tab" aria-selected="true">All Products</button>
+          <button class="filter-btn px-6 py-3 bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-500 transition-all transform hover:scale-105" data-filter="school" role="tab" aria-selected="false">School Bags</button>
+          <button class="filter-btn px-6 py-3 bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-500 transition-all transform hover:scale-105" data-filter="jute" role="tab" aria-selected="false">Jute Bags</button>
+          <button class="filter-btn px-6 py-3 bg-gray-200 text-gray-800 dark:bg-gray-600 dark:text-gray-200 rounded-full hover:bg-gray-300 dark:hover:bg-gray-500 transition-all transform hover:scale-105" data-filter="foam" role="tab" aria-selected="false">Foam Bags</button>
         </div>
       </div>
       
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
-        <div class="product-card school bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100" data-aos="fade-up" data-aos-delay="300">
-          <div class="h-56 overflow-hidden bg-blue-100 flex items-center justify-center relative group">
-            <img src="schoolbag.jpg" alt="School Bags" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid" role="tabpanel">
+        <div class="product-card school bg-gradient-to-br from-white to-blue-50 dark:from-gray-700 dark:to-blue-900 rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100 dark:border-gray-600" data-aos="fade-up" data-aos-delay="300">
+          <div class="h-56 overflow-hidden bg-blue-100 dark:bg-blue-900 flex items-center justify-center relative group">
+            <img src="schoolbag.jpg" alt="School Bags" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" data-src="schoolbag.jpg">
             <div class="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
           </div>
           <div class="p-6">
-            <h4 class="text-2xl font-bold text-blue-700 mb-2">School Bags</h4>
-            <p class="text-gray-600 mb-4">Durable, ergonomic designs for students of all ages with maximum comfort.</p>
-            <a href="#contact" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition-colors group">
+            <h4 class="text-2xl font-bold text-blue-700 dark:text-blue-400 mb-2">School Bags</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Durable, ergonomic designs for students of all ages with maximum comfort.</p>
+            <a href="#contact" class="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-800 dark:hover:text-blue-300 transition-colors group" aria-label="Learn more about school bags">
               Learn More 
               <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -315,15 +393,15 @@
           </div>
         </div>
         
-        <div class="product-card jute bg-gradient-to-br from-white to-green-50 rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100" data-aos="fade-up" data-aos-delay="400">
-          <div class="h-56 overflow-hidden bg-green-100 flex items-center justify-center relative group">
-            <img src="jutebag.jpg" alt="Jute Bags" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="product-card jute bg-gradient-to-br from-white to-green-50 dark:from-gray-700 dark:to-green-900 rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100 dark:border-gray-600" data-aos="fade-up" data-aos-delay="400">
+          <div class="h-56 overflow-hidden bg-green-100 dark:bg-green-900 flex items-center justify-center relative group">
+            <img src="jutebag.jpg" alt="Jute Bags" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" data-src="jutebag.jpg">
             <div class="absolute inset-0 bg-green-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
           </div>
           <div class="p-6">
-            <h4 class="text-2xl font-bold text-blue-700 mb-2">Jute Bags</h4>
-            <p class="text-gray-600 mb-4">Eco-friendly and stylish bags perfect for daily use and shopping.</p>
-            <a href="#contact" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition-colors group">
+            <h4 class="text-2xl font-bold text-blue-700 dark:text-blue-400 mb-2">Jute Bags</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Eco-friendly and stylish bags perfect for daily use and shopping.</p>
+            <a href="#contact" class="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-800 dark:hover:text-blue-300 transition-colors group" aria-label="Learn more about jute bags">
               Learn More 
               <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -332,15 +410,15 @@
           </div>
         </div>
         
-        <div class="product-card foam bg-gradient-to-br from-white to-purple-50 rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100" data-aos="fade-up" data-aos-delay="500">
-          <div class="h-56 overflow-hidden bg-purple-100 flex items-center justify-center relative group">
-            <img src="foambag.jpg" alt="Foam Bags" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+        <div class="product-card foam bg-gradient-to-br from-white to-purple-50 dark:from-gray-700 dark:to-purple-900 rounded-2xl shadow-lg overflow-hidden card-hover border border-gray-100 dark:border-gray-600" data-aos="fade-up" data-aos-delay="500">
+          <div class="h-56 overflow-hidden bg-purple-100 dark:bg-purple-900 flex items-center justify-center relative group">
+            <img src="foambag.jpg" alt="Foam Bags" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" data-src="foambag.jpg">
             <div class="absolute inset-0 bg-purple-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
           </div>
           <div class="p-6">
-            <h4 class="text-2xl font-bold text-blue-700 mb-2">Foam Bags</h4>
-            <p class="text-gray-600 mb-4">Lightweight & protective foam construction for ultimate protection.</p>
-            <a href="#contact" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition-colors group">
+            <h4 class="text-2xl font-bold text-blue-700 dark:text-blue-400 mb-2">Foam Bags</h4>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Lightweight & protective foam construction for ultimate protection.</p>
+            <a href="#contact" class="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-800 dark:hover:text-blue-300 transition-colors group" aria-label="Learn more about foam bags">
               Learn More 
               <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -353,50 +431,50 @@
   </section>
 
   <!-- Testimonials -->
-  <section id="testimonials" class="py-20 bg-gradient-to-br from-blue-50 to-white">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <h3 class="text-4xl md:text-5xl font-extrabold mb-6 text-gray-800" data-aos="fade-up">What Our Clients Say</h3>
-      <p class="text-gray-600 text-lg mb-12" data-aos="fade-up" data-aos-delay="100">Trusted by schools, retailers & bulk buyers across the region</p>
+  <section id="testimonials" class="py-20 bg-gradient-to-br from-blue-50 to-white dark:from-blue-900 dark:to-gray-800" aria-labelledby="testimonials-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+      <h3 id="testimonials-heading" class="text-4xl md:text-5xl font-extrabold mb-6 text-gray-800 dark:text-gray-200" data-aos="fade-up">What Our Clients Say</h3>
+      <p class="text-gray-600 dark:text-gray-300 text-lg mb-12" data-aos="fade-up" data-aos-delay="100">Trusted by schools, retailers & bulk buyers across the region</p>
       
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg card-hover border border-gray-100 dark:border-gray-600" data-aos="fade-up" data-aos-delay="200">
           <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
-          <p class="text-gray-700 italic mb-6 leading-relaxed">
+          <p class="text-gray-700 dark:text-gray-300 italic mb-6 leading-relaxed">
             "We ordered school bags for our school — the quality and delivery time was excellent. Highly recommended!"
           </p>
           <div class="flex items-center justify-center">
             <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-400 rounded-full flex items-center justify-center text-white font-bold mr-3 shadow-md">S</div>
             <div class="text-left">
-              <span class="block text-blue-600 font-bold">Sunrise School</span>
-              <span class="text-gray-500 text-sm">Educational Institution</span>
+              <span class="block text-blue-600 dark:text-blue-400 font-bold">Sunrise School</span>
+              <span class="text-gray-500 dark:text-gray-400 text-sm">Educational Institution</span>
             </div>
           </div>
         </div>
         
-        <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border border-gray-100" data-aos="fade-up" data-aos-delay="300">
+        <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg card-hover border border-gray-100 dark:border-gray-600" data-aos="fade-up" data-aos-delay="300">
           <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
-          <p class="text-gray-700 italic mb-6 leading-relaxed">
+          <p class="text-gray-700 dark:text-gray-300 italic mb-6 leading-relaxed">
             "Their jute bags became our go-to eco-friendly shopping solution. Customers love them!"
           </p>
           <div class="flex items-center justify-center">
             <div class="w-12 h-12 bg-gradient-to-br from-green-600 to-green-400 rounded-full flex items-center justify-center text-white font-bold mr-3 shadow-md">G</div>
             <div class="text-left">
-              <span class="block text-blue-600 font-bold">GreenMart Retail</span>
-              <span class="text-gray-500 text-sm">Retail Chain</span>
+              <span class="block text-blue-600 dark:text-blue-400 font-bold">GreenMart Retail</span>
+              <span class="text-gray-500 dark:text-gray-400 text-sm">Retail Chain</span>
             </div>
           </div>
         </div>
         
-        <div class="bg-white p-8 rounded-2xl shadow-lg card-hover border border-gray-100" data-aos="fade-up" data-aos-delay="400">
+        <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg card-hover border border-gray-100 dark:border-gray-600" data-aos="fade-up" data-aos-delay="400">
           <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
-          <p class="text-gray-700 italic mb-6 leading-relaxed">
+          <p class="text-gray-700 dark:text-gray-300 italic mb-6 leading-relaxed">
             "Their foam bags are top-notch quality and very durable. Perfect for our business needs!"
           </p>
           <div class="flex items-center justify-center">
             <div class="w-12 h-12 bg-gradient-to-br from-purple-600 to-purple-400 rounded-full flex items-center justify-center text-white font-bold mr-3 shadow-md">M</div>
             <div class="text-left">
-              <span class="block text-blue-600 font-bold">Mohiuddin Bag House</span>
-              <span class="text-gray-500 text-sm">Distributor</span>
+              <span class="block text-blue-600 dark:text-blue-400 font-bold">Mohiuddin Bag House</span>
+              <span class="text-gray-500 dark:text-gray-400 text-sm">Distributor</span>
             </div>
           </div>
         </div>
@@ -404,25 +482,38 @@
     </div>
   </section>
 
+  <!-- Newsletter -->
+  <section id="newsletter" class="py-16 bg-gray-100 dark:bg-gray-700" aria-labelledby="newsletter-heading">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <h3 id="newsletter-heading" class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 mb-4" data-aos="fade-up">Stay Updated</h3>
+      <p class="text-gray-600 dark:text-gray-300 mb-8" data-aos="fade-up" data-aos-delay="100">Subscribe to our newsletter for the latest product updates and offers</p>
+      <div class="flex max-w-md mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <input type="email" id="newsletter-email" placeholder="Enter your email" class="form-input flex-1 px-4 py-3 rounded-l-full border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 focus:outline-none" aria-label="Email for newsletter">
+        <button id="newsletter-submit" class="px-6 py-3 bg-blue-600 text-white rounded-r-full hover:bg-blue-700 dark:hover:bg-blue-500 transition-all" aria-label="Subscribe to newsletter">Subscribe</button>
+      </div>
+      <p id="newsletter-error" class="text-red-500 mt-2 hidden">Please enter a valid email address</p>
+    </div>
+  </section>
+
   <!-- Contact -->
-  <section id="contact" class="py-24 bg-gradient-to-r from-blue-700 to-blue-500 animated-gradient text-white relative overflow-hidden">
+  <section id="contact" class="py-24 bg-gradient-to-r from-blue-700 to-blue-500 animated-gradient text-white relative overflow-hidden" aria-labelledby="contact-heading">
     <div class="absolute inset-0 opacity-10">
       <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl pulse-slow"></div>
       <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl pulse-slow" style="animation-delay: 2s;"></div>
     </div>
     
-    <div class="max-w-5xl mx-auto px-6 text-center relative z-10" data-aos="fade-up">
-      <h3 class="text-4xl md:text-5xl font-bold mb-4">Let's Talk Business</h3>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10" data-aos="fade-up">
+      <h3 id="contact-heading" class="text-4xl md:text-5xl font-bold mb-4">Let's Talk Business</h3>
       <p class="text-lg mb-12 opacity-90">Reach out to us for custom orders, bulk supplies or product queries</p>
       
-      <div class="bg-white text-gray-900 p-8 md:p-10 rounded-2xl shadow-2xl max-w-2xl mx-auto">
+      <div class="bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200 p-8 md:p-10 rounded-2xl shadow-2xl max-w-2xl mx-auto">
         <div class="grid md:grid-cols-2 gap-6 mb-8">
           <div class="text-left transform hover:scale-105 transition-transform">
             <div class="flex items-start mb-4">
               <span class="text-2xl mr-3">📍</span>
               <div>
-                <label class="block font-bold text-lg mb-2 text-blue-700">Address</label>
-                <p class="text-gray-700">M/5 West Chowbhaga, Gulshan Colony, Near Adam Public School, Kolkata – 700100, West Bengal</p>
+                <label class="block font-bold text-lg mb-2 text-blue-700 dark:text-blue-400">Address</label>
+                <p class="text-gray-700 dark:text-gray-300">M/5 West Chowbhaga, Gulshan Colony, Near Adam Public School, Kolkata – 700100, West Bengal</p>
               </div>
             </div>
           </div>
@@ -431,18 +522,29 @@
             <div class="flex items-start transform hover:scale-105 transition-transform">
               <span class="text-2xl mr-3">📞</span>
               <div>
-                <label class="block font-bold text-lg mb-2 text-blue-700">Phone</label>
-                <a href="tel:+919903101456" class="text-gray-700 hover:text-blue-600 transition-colors">+91-9903101456</a>
+                <label class="block font-bold text-lg mb-2 text-blue-700 dark:text-blue-400">Phone</label>
+                <a href="tel:+919903101456" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">+91-9903101456</a>
               </div>
             </div>
             
             <div class="flex items-start transform hover:scale-105 transition-transform">
               <span class="text-2xl mr-3">✉️</span>
               <div>
-                <label class="block font-bold text-lg mb-2 text-blue-700">Email</label>
-                <a href="mailto:info@aribaimpex.in" class="text-gray-700 hover:text-blue-600 transition-colors">info@aribaimpex.in</a>
+                <label class="block font-bold text-lg mb-2 text-blue-700 dark:text-blue-400">Email</label>
+                <a href="mailto:info@aribaimpex.in" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">info@aribaimpex.in</a>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <h4 class="text-2xl font-bold mb-6 text-blue-700 dark:text-blue-400">Send Us a Message</h4>
+          <div class="space-y-4">
+            <input type="text" id="contact-name" placeholder="Your Name" class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 focus:outline-none" aria-label="Your name" required>
+            <input type="email" id="contact-email" placeholder="Your Email" class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 focus:outline-none" aria-label="Your email" required>
+            <textarea id="contact-message" placeholder="Your Message" rows="4" class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 focus:outline-none" aria-label="Your message" required></textarea>
+            <button id="contact-submit" class="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-500 transition-all" aria-label="Send message">Send Message</button>
+            <p id="contact-error" class="text-red-500 mt-2 hidden">Please fill in all fields correctly</p>
           </div>
         </div>
 
@@ -454,7 +556,8 @@
             style="border:0;" 
             allowfullscreen="" 
             loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ariba Impex Location">
           </iframe>
         </div>
       </div>
@@ -462,12 +565,26 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-blue-900 text-white py-10">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <div class="mb-4 md:mb-0">
+  <footer class="bg-blue-900 dark:bg-gray-900 text-white py-10" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
           <p class="text-lg font-semibold mb-2">Ariba Impex</p>
           <p class="text-sm opacity-80">Premium Bags Manufacturer</p>
+        </div>
+        <div class="text-center">
+          <p class="text-sm opacity-80 mb-4">Follow us on social media</p>
+          <div class="flex justify-center space-x-4">
+            <a href="https://facebook.com" target="_blank" class="text-white hover:text-blue-400 transition-colors" aria-label="Follow us on Facebook">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="text-white hover:text-blue-400 transition-colors" aria-label="Follow us on Twitter">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"></path></svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" class="text-white hover:text-blue-400 transition-colors" aria-label="Follow us on Instagram">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.948-.196-4.354-2.618-6.78-6.979-6.98-1.281-.059-1.689-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+            </a>
+          </div>
         </div>
         <div class="text-center md:text-right">
           <p class="tracking-wide">&copy; 2025 Ariba Impex. All rights reserved.</p>
@@ -478,13 +595,53 @@
   </footer>
 
   <!-- Scroll to Top Button -->
-  <button id="scroll-top" class="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg opacity-0 pointer-events-none transition-all hover:bg-blue-700 hover:scale-110 z-50" aria-label="Scroll to top">
+  <button id="scroll-top" class="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg opacity-0 pointer-events-none transition-all hover:bg-blue-700 dark:hover:bg-blue-500 hover:scale-110 z-50" aria-label="Scroll to top">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
     </svg>
   </button>
 
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Ariba Impex",
+      "url": "https://www.aribaimpex.in",
+      "logo": "logo.jpg",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-9903101456",
+        "contactType": "Customer Service",
+        "email": "info@aribaimpex.in",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "M/5 West Chowbhaga, Gulshan Colony, Near Adam Public School",
+        "addressLocality": "Kolkata",
+        "addressRegion": "West Bengal",
+        "postalCode": "700100",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://facebook.com",
+        "https://twitter.com",
+        "https://instagram.com"
+      ]
+    }
+  </script>
+
   <script>
+    // Preloader
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      setTimeout(() => {
+        preloader.classList.add('hidden');
+      }, 1000);
+    });
+
     // Initialize AOS
     AOS.init({ 
       once: true, 
@@ -492,6 +649,19 @@
       easing: 'ease-out-cubic',
       offset: 100
     });
+
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+    });
+
+    // Load dark mode preference
+    if (localStorage.getItem('darkMode') === 'true' || 
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.body.classList.add('dark');
+    }
 
     // Mobile menu toggle
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -501,6 +671,7 @@
     mobileMenuBtn.addEventListener('click', () => {
       const isActive = mobileMenu.classList.toggle('active');
       menuIcon.style.transform = isActive ? 'rotate(90deg)' : 'rotate(0deg)';
+      mobileMenuBtn.setAttribute('aria-expanded', isActive);
     });
 
     // Close mobile menu on link click
@@ -508,6 +679,7 @@
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
         menuIcon.style.transform = 'rotate(0deg)';
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
       });
     });
 
@@ -518,14 +690,16 @@
       btn.addEventListener('click', () => {
         const filter = btn.getAttribute('data-filter');
         
-        // Update button styles
+        // Update button styles and ARIA attributes
         document.querySelectorAll('.filter-btn').forEach(b => {
           b.classList.remove('bg-blue-600', 'text-white', 'shadow-lg');
           b.classList.add('bg-gray-200', 'text-gray-800');
+          b.setAttribute('aria-selected', 'false');
         });
         
         btn.classList.remove('bg-gray-200', 'text-gray-800');
         btn.classList.add('bg-blue-600', 'text-white', 'shadow-lg');
+        btn.setAttribute('aria-selected', 'true');
         
         // Filter products with animation
         document.querySelectorAll('.product-card').forEach((card, index) => {
@@ -657,13 +831,77 @@
       });
 
       navLinks.forEach(link => {
-        link.classList.remove('text-blue-600');
+        link.classList.remove('text-blue-600', 'dark:text-blue-400');
         if (link.getAttribute('href').slice(1) === current) {
-          link.classList.add('text-blue-600');
+          link.classList.add('text-blue-600', 'dark:text-blue-400');
         }
+      });
+    });
+
+    // Newsletter form validation
+    const newsletterForm = document.getElementById('newsletter-submit');
+    const newsletterEmail = document.getElementById('newsletter-email');
+    const newsletterError = document.getElementById('newsletter-error');
+
+    newsletterForm.addEventListener('click', (e) => {
+      e.preventDefault();
+      const email = newsletterEmail.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if (!emailRegex.test(email)) {
+        newsletterEmail.classList.add('form-error');
+        newsletterError.classList.remove('hidden');
+        return;
+      }
+
+      newsletterEmail.classList.remove('form-error');
+      newsletterError.classList.add('hidden');
+      // Simulate form submission
+      newsletterEmail.value = '';
+      alert('Thank you for subscribing!');
+    });
+
+    // Contact form validation
+    const contactForm = document.getElementById('contact-submit');
+    const contactName = document.getElementById('contact-name');
+    const contactEmail = document.getElementById('contact-email');
+    const contactMessage = document.getElementById('contact-message');
+    const contactError = document.getElementById('contact-error');
+
+    contactForm.addEventListener('click', (e) => {
+      e.preventDefault();
+      const name = contactName.value.trim();
+      const email = contactEmail.value.trim();
+      const message = contactMessage.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!name || !emailRegex.test(email) || !message) {
+        [contactName, contactEmail, contactMessage].forEach(input => {
+          if (!input.value.trim()) input.classList.add('form-error');
+          if (input.id === 'contact-email' && !emailRegex.test(email)) input.classList.add('form-error');
+        });
+        contactError.classList.remove('hidden');
+        return;
+      }
+
+      [contactName, contactEmail, contactMessage].forEach(input => input.classList.remove('form-error'));
+      contactError.classList.add('hidden');
+      // Simulate form submission
+      contactName.value = '';
+      contactEmail.value = '';
+      contactMessage.value = '';
+      alert('Message sent successfully!');
+    });
+
+    // Micro-interaction for buttons
+    document.querySelectorAll('button, a[href^="#"]').forEach(element => {
+      element.addEventListener('mouseenter', () => {
+        element.classList.add('scale-105');
+      });
+      element.addEventListener('mouseleave', () => {
+        element.classList.remove('scale-105');
       });
     });
   </script>
 </body>
-
 </html>
