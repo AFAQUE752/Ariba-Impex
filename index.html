@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ariba Impex — Premium Bags Manufacturer</title>
+  <meta name="description" content="Premium manufacturer of school bags, jute bags, and foam bags. Custom designs and bulk orders available.">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <link rel="icon" type="image/png" href="logo.jpg" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .float-animation { animation: float 6s ease-in-out infinite; }
+    
+    @keyframes gradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    .animated-gradient {
+      background-size: 200% 200%;
+      animation: gradient 8s ease infinite;
+    }
+    
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Mobile menu */
+    .mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    
+    .mobile-menu.active {
+      max-height: 400px;
+    }
+    
+    /* Smooth reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300" id="header">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      
+      <a href="#home" class="flex items-center space-x-3 group">
+        <img src="logo.jpg" alt="Ariba Impex Logo" class="h-10 w-auto transition-transform group-hover:scale-110" />
+        <h1 class="text-2xl md:text-3xl font-bold text-blue-700 transition-colors group-hover:text-blue-600">Ariba Impex</h1>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex space-x-6 text-gray-700 font-medium">
+        <a href="#home" class="hover:text-blue-600 transition-colors duration-200 relative group">
+          Home
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#about" class="hover:text-blue-600 transition-colors duration-200 relative group">
+          About
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#products" class="hover:text-blue-600 transition-colors duration-200 relative group">
+          Products
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#testimonials" class="hover:text-blue-600 transition-colors duration-200 relative group">
+          Testimonials
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#contact" class="hover:text-blue-600 transition-colors duration-200 relative group">
+          Contact
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all group-hover:w-full"></span>
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t">
+      <nav class="flex flex-col px-6 py-4 space-y-3">
+        <a href="#home" class="text-gray-700 hover:text-blue-600 transition-colors mobile-link">Home</a>
+        <a href="#about" class="text-gray-700 hover:text-blue-600 transition-colors mobile-link">About</a>
+        <a href="#products" class="text-gray-700 hover:text-blue-600 transition-colors mobile-link">Products</a>
+        <a href="#testimonials" class="text-gray-700 hover:text-blue-600 transition-colors mobile-link">Testimonials</a>
+        <a href="#contact" class="text-gray-700 hover:text-blue-600 transition-colors mobile-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="relative bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400 animated-gradient text-white py-24 md:py-32 overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-20 right-20 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto px-6 text-center relative z-10" data-aos="fade-up" data-aos-duration="1000">
+      <h2 class="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg leading-tight">High-Quality Bags,<br>Made to Last</h2>
+      <p class="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto">We specialize in school bags, jute bags, foam bags & custom designs with premium craftsmanship</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#products" class="inline-block bg-white text-blue-700 font-bold px-8 py-4 rounded-full shadow-lg transform hover:scale-105 transition-all hover:shadow-xl">Explore Products</a>
+        <a href="#contact" class="inline-block bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-full shadow-lg transform hover:scale-105 transition-all hover:bg-white hover:text-blue-700">Get in Touch</a>
+      </div>
+    </div>
+    
+    <div class="absolute right-0 bottom-0 w-1/3 h-1/3 bg-white opacity-10 rounded-full blur-3xl"></div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-12 bg-white border-b">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div data-aos="fade-up" data-aos-delay="100">
+          <div class="text-4xl font-bold text-blue-700 mb-2">500+</div>
+          <div class="text-gray-600">Happy Clients</div>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="200">
+          <div class="text-4xl font-bold text-blue-700 mb-2">50K+</div>
+          <div class="text-gray-600">Bags Delivered</div>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="300">
+          <div class="text-4xl font-bold text-blue-700 mb-2">15+</div>
+          <div class="text-gray-600">Years Experience</div>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="400">
+          <div class="text-4xl font-bold text-blue-700 mb-2">100%</div>
+          <div class="text-gray-600">Quality Assured</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-20 bg-gradient-to-br from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div data-aos="fade-right" data-aos-duration="800" class="float-animation">
+        <img src="1.jpg" alt="Bag Manufacturing" class="rounded-2xl shadow-2xl w-full h-auto" />
+      </div>
+      <div data-aos="fade-left" data-aos-duration="800">
+        <h3 class="text-4xl md:text-5xl font-bold text-blue-700 mb-6">Why Choose Ariba Impex?</h3>
+        <p class="text-lg leading-relaxed mb-6 text-gray-700">At Ariba Impex, we combine craftsmanship, sustainable materials, and precise quality control to deliver bags that last. Our products align with both style and utility.</p>
+        <div class="space-y-4">
+          <div class="flex items-start bg-white p-4 rounded-lg shadow-md card-hover">
+            <span class="text-2xl text-blue-600 mr-4">🌱</span>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">Eco-Friendly Materials</h4>
+              <p class="text-gray-600">Sustainable and durable materials for a better tomorrow</p>
+            </div>
+          </div>
+          <div class="flex items-start bg-white p-4 rounded-lg shadow-md card-hover">
+            <span class="text-2xl text-blue-600 mr-4">✨</span>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">Custom Designs</h4>
+              <p class="text-gray-600">Tailored solutions for bulk orders and special requirements</p>
+            </div>
+          </div>
+          <div class="flex items-start bg-white p-4 rounded-lg shadow-md card-hover">
+            <span class="text-2xl text-blue-600 mr-4">✓</span>
+            <div>
+              <h4 class="font-semibold text-lg mb-1">Quality Assurance</h4>
+              <p class="text-gray-600">Strict quality checks and timely delivery guaranteed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h3 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4" data-aos="fade-up">Our Premium Products</h3>
+        <p class="text-gray-600 text-lg mb-8" data-aos="fade-up" data-aos-delay="100">Browse our range of high-quality bags & custom options</p>
+        
+        <div class="inline-flex flex-wrap justify-center gap-3 mb-10" data-aos="fade-up" data-aos-delay="200">
+          <button class="filter-btn px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all shadow-md hover:shadow-lg" data-filter="all">All Products</button>
+          <button class="filter-btn px-6 py-3 bg-gray-200 text-gray-800 rounded-full hover:bg-gray-300 transition-all" data-filter="school">School Bags</button>
+          <button class="filter-btn px-6 py-3 bg-gray-200 text-gray-800 rounded-full hover:bg-gray-300 transition-all" data-filter="jute">Jute Bags</button>
+          <button class="filter-btn px-6 py-3 bg-gray-200 text-gray-800 rounded-full hover:bg-gray-300 transition-all" data-filter="foam">Foam Bags</button>
+        </div>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="product-card school bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="300">
+          <div class="h-56 overflow-hidden bg-blue-50 flex items-center justify-center">
+            <img src="schoolbag.jpg" alt="School Bags" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h4 class="text-2xl font-bold text-blue-700 mb-2">School Bags</h4>
+            <p class="text-gray-600 mb-4">Durable, ergonomic designs for students of all ages with maximum comfort.</p>
+            <a href="#contact" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">Learn More →</a>
+          </div>
+        </div>
+        
+        <div class="product-card jute bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="400">
+          <div class="h-56 overflow-hidden bg-green-50 flex items-center justify-center">
+            <img src="jutebag.jpg" alt="Jute Bags" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h4 class="text-2xl font-bold text-blue-700 mb-2">Jute Bags</h4>
+            <p class="text-gray-600 mb-4">Eco-friendly and stylish bags perfect for daily use and shopping.</p>
+            <a href="#contact" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">Learn More →</a>
+          </div>
+        </div>
+        
+        <div class="product-card foam bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="500">
+          <div class="h-56 overflow-hidden bg-purple-50 flex items-center justify-center">
+            <img src="foambag.jpg" alt="Foam Bags" class="w-full h-full object-cover transition-transform duration-300 hover:scale-110">
+          </div>
+          <div class="p-6">
+            <h4 class="text-2xl font-bold text-blue-700 mb-2">Foam Bags</h4>
+            <p class="text-gray-600 mb-4">Lightweight & protective foam construction for ultimate protection.</p>
+            <a href="#contact" class="text-blue-600 font-semibold hover:text-blue-800 transition-colors">Learn More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="py-20 bg-gradient-to-br from-blue-50 to-white">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h3 class="text-4xl md:text-5xl font-extrabold mb-6 text-gray-800" data-aos="fade-up">What Our Clients Say</h3>
+      <p class="text-gray-600 text-lg mb-12" data-aos="fade-up" data-aos-delay="100">Trusted by schools, retailers & bulk buyers across the region</p>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+          <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
+          <p class="text-gray-700 italic mb-6 leading-relaxed">
+            "We ordered school bags for our school — the quality and delivery time was excellent. Highly recommended!"
+          </p>
+          <div class="flex items-center justify-center">
+            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-3">S</div>
+            <div class="text-left">
+              <span class="block text-blue-600 font-bold">Sunrise School</span>
+              <span class="text-gray-500 text-sm">Educational Institution</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white p-8 rounded-2xl shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
+          <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
+          <p class="text-gray-700 italic mb-6 leading-relaxed">
+            "Their jute bags became our go-to eco-friendly shopping solution. Customers love them!"
+          </p>
+          <div class="flex items-center justify-center">
+            <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold mr-3">G</div>
+            <div class="text-left">
+              <span class="block text-blue-600 font-bold">GreenMart Retail</span>
+              <span class="text-gray-500 text-sm">Retail Chain</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white p-8 rounded-2xl shadow-lg card-hover" data-aos="fade-up" data-aos-delay="400">
+          <div class="text-4xl mb-4">⭐⭐⭐⭐⭐</div>
+          <p class="text-gray-700 italic mb-6 leading-relaxed">
+            "Their foam bags are top-notch quality and very durable. Perfect for our business needs!"
+          </p>
+          <div class="flex items-center justify-center">
+            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-3">M</div>
+            <div class="text-left">
+              <span class="block text-blue-600 font-bold">Mohiuddin Bag House</span>
+              <span class="text-gray-500 text-sm">Distributor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 bg-gradient-to-r from-blue-700 to-blue-500 animated-gradient text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="max-w-5xl mx-auto px-6 text-center relative z-10" data-aos="fade-up">
+      <h3 class="text-4xl md:text-5xl font-bold mb-4">Let's Talk Business</h3>
+      <p class="text-lg mb-12 opacity-90">Reach out to us for custom orders, bulk supplies or product queries</p>
+      
+      <div class="bg-white text-gray-900 p-8 md:p-10 rounded-2xl shadow-2xl max-w-2xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="text-left">
+            <div class="flex items-start mb-4">
+              <span class="text-2xl mr-3">📍</span>
+              <div>
+                <label class="block font-bold text-lg mb-2 text-blue-700">Address</label>
+                <p class="text-gray-700">M/5 West Chowbhaga, Gulshan Colony, Near Adam Public School, Kolkata – 700100, West Bengal</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="text-left">
+            <div class="flex items-start mb-4">
+              <span class="text-2xl mr-3">📞</span>
+              <div>
+                <label class="block font-bold text-lg mb-2 text-blue-700">Phone</label>
+                <a href="tel:+919903101456" class="text-gray-700 hover:text-blue-600 transition-colors">+91-9903101456</a>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <span class="text-2xl mr-3">✉️</span>
+              <div>
+                <label class="block font-bold text-lg mb-2 text-blue-700">Email</label>
+                <a href="mailto:info@aribaimpex.in" class="text-gray-700 hover:text-blue-600 transition-colors">info@aribaimpex.in</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="overflow-hidden rounded-xl shadow-2xl">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3687.4679293926356!2d88.404613!3d22.529272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x84c345496b466647!2sARIBA%20IMPEX!5e0!3m2!1sen!2sin!4v1696242480123!5m2!1sen!2sin" 
+            width="100%" 
+            height="350" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <p class="text-lg font-semibold mb-2">Ariba Impex</p>
+          <p class="text-sm opacity-80">Premium Bags Manufacturer</p>
+        </div>
+        <div class="text-center md:text-right">
+          <p class="tracking-wide">&copy; 2025 Ariba Impex. All rights reserved.</p>
+          <p class="text-sm opacity-80 mt-1">Crafted with care in Kolkata</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scroll-top" class="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg opacity-0 pointer-events-none transition-all hover:bg-blue-700 hover:scale-110 z-50">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+  </button>
+
+  <script>
+    // Initialize AOS
+    AOS.init({ 
+      once: true, 
+      duration: 800,
+      easing: 'ease-out-cubic'
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Product filtering
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        
+        document.querySelectorAll('.product-card').forEach(card => {
+          if (filter === 'all' || card.classList.contains(filter)) {
+            card.classList.remove('hidden');
+            card.style.display = 'block';
+          } else {
+            card.classList.add('hidden');
+            card.style.display = 'none';
+          }
+        });
+        
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.classList.remove('bg-blue-600', 'text-white', 'shadow-lg');
+          b.classList.add('bg-gray-200', 'text-gray-800');
+        });
+        
+        btn.classList.remove('bg-gray-200', 'text-gray-800');
+        btn.classList.add('bg-blue-600', 'text-white', 'shadow-lg');
+      });
+    });
+
+    // Scroll to top button
+    const scrollTopBtn = document.getElementById('scroll-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+        scrollTopBtn.classList.add('opacity-100');
+      } else {
+        scrollTopBtn.classList.add('opacity-0', 'pointer-events-none');
+        scrollTopBtn.classList.remove('opacity-100');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Header shadow on scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 50) {
+        header.classList.add('shadow-lg');
+      } else {
+        header.classList.remove('shadow-lg');
+      }
+    });
+  </script>
+</body>
+</html>
