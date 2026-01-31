@@ -686,6 +686,41 @@
     }
   </script>
 
+<script>
+  const submitBtn = document.getElementById('contact-submit');
+  const nameInput = document.getElementById('contact-name');
+  const emailInput = document.getElementById('contact-email');
+  const messageInput = document.getElementById('contact-message');
+  const errorMsg = document.getElementById('contact-error');
+
+  submitBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // prevent form from reloading page
+
+    // Simple validation
+    if (!nameInput.value || !emailInput.value || !messageInput.value) {
+      errorMsg.classList.remove('hidden');
+      return;
+    }
+
+    errorMsg.classList.add('hidden');
+
+    // Here you can handle the message, e.g., send it via EmailJS or your backend
+    console.log('Message sent:', {
+      name: nameInput.value,
+      email: emailInput.value,
+      message: messageInput.value
+    });
+
+    // Optional: clear inputs after sending
+    nameInput.value = '';
+    emailInput.value = '';
+    messageInput.value = '';
+
+    alert('Message sent successfully!'); // temporary feedback
+  });
+</script>
+
+  
   <script>
     // Preloader
     window.addEventListener('load', () => {
@@ -958,6 +993,7 @@
   </script>
 </body>
 </html>
+
 
 
 
