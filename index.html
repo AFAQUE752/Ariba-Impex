@@ -608,17 +608,6 @@
           </div>
         </div>
 
-        <div class="mb-8">
-          <h4 class="text-2xl font-bold mb-6 text-blue-700 dark:text-blue-400">Send Us a Message</h4>
-          <div class="space-y-4">
-            <input type="text" id="contact-name" placeholder="Your Name" class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 focus:outline-none" aria-label="Your name" required>
-            <input type="email" id="contact-email" placeholder="Your Email" class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 focus:outline-none" aria-label="Your email" required>
-            <textarea id="contact-message" placeholder="Your Message" rows="4" class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 focus:outline-none" aria-label="Your message" required></textarea>
-            <button id="contact-submit" class="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-500 transition-all" aria-label="Send message">Send Message</button>
-            <p id="contact-error" class="text-red-500 mt-2 hidden">Please fill in all fields correctly</p>
-          </div>
-        </div>
-
         <div class="overflow-hidden rounded-xl shadow-2xl transform hover:scale-105 transition-transform">
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3687.4679293926356!2d88.404613!3d22.529272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x84c345496b466647!2sARIBA%20IMPEX!5e0!3m2!1sen!2sin!4v1696242480123!5m2!1sen!2sin" 
@@ -685,41 +674,6 @@
       ]
     }
   </script>
-
-<script>
-  const submitBtn = document.getElementById('contact-submit');
-  const nameInput = document.getElementById('contact-name');
-  const emailInput = document.getElementById('contact-email');
-  const messageInput = document.getElementById('contact-message');
-  const errorMsg = document.getElementById('contact-error');
-
-  submitBtn.addEventListener('click', (e) => {
-    e.preventDefault(); // prevent form from reloading page
-
-    // Simple validation
-    if (!nameInput.value || !emailInput.value || !messageInput.value) {
-      errorMsg.classList.remove('hidden');
-      return;
-    }
-
-    errorMsg.classList.add('hidden');
-
-    // Here you can handle the message, e.g., send it via EmailJS or your backend
-    console.log('Message sent:', {
-      name: nameInput.value,
-      email: emailInput.value,
-      message: messageInput.value
-    });
-
-    // Optional: clear inputs after sending
-    nameInput.value = '';
-    emailInput.value = '';
-    messageInput.value = '';
-
-    alert('Message sent successfully!'); // temporary feedback
-  });
-</script>
-
   
   <script>
     // Preloader
@@ -993,6 +947,7 @@
   </script>
 </body>
 </html>
+
 
 
 
