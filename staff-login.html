@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff Login - Ariba Impex</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .dark {
+      background-color: #1f2937;
+      color: #f3f4f6;
+    }
+
+    .dark .bg-white { background-color: #374151; }
+    .dark .bg-gray-50 { background-color: #1f2937; }
+    .dark .text-gray-800 { color: #f3f4f6; }
+    .dark .text-gray-700 { color: #d1d5db; }
+    .dark .text-gray-600 { color: #9ca3af; }
+
+    @keyframes gradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .animated-gradient {
+      background-size: 200% 200%;
+      animation: gradient 8s ease infinite;
+    }
+
+    .form-input {
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-error {
+      border-color: #ef4444 !important;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .shake {
+      animation: shake 0.5s;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+  
+  <!-- Login Container -->
+  <div class="min-h-screen flex items-center justify-center px-4 py-12">
+    <div class="max-w-md w-full space-y-8">
+      
+      <!-- Header -->
+      <div class="text-center">
+        <a href="index.html" class="inline-flex items-center space-x-3 group mb-8">
+          <img src="logo.jpg" alt="Ariba Impex Logo" class="h-12 w-auto transition-transform group-hover:scale-110" />
+          <h1 class="text-3xl font-bold text-blue-700 dark:text-blue-400">Ariba Impex</h1>
+        </a>
+        <h2 class="text-3xl font-bold text-gray-800 dark:text-gray-200">Staff Login</h2>
+        <p class="mt-2 text-gray-600 dark:text-gray-400">Enter your credentials to access the staff portal</p>
+      </div>
+
+      <!-- Login Form -->
+      <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8">
+        <form id="login-form" class="space-y-6">
+          
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              Email
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email"
+              required
+              class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none dark:bg-gray-700 dark:text-gray-200"
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <!-- Password -->
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              Password
+            </label>
+            <div class="relative">
+              <input 
+                type="password" 
+                id="password" 
+                name="password"
+                required
+                class="form-input w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none dark:bg-gray-700 dark:text-gray-200"
+                placeholder="Enter your password"
+              />
+              <button 
+                type="button"
+                id="toggle-password"
+                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Remember Me -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <input 
+                id="remember-me" 
+                name="remember-me" 
+                type="checkbox"
+                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              />
+              <label for="remember-me" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                Remember me
+              </label>
+            </div>
+          </div>
+
+          <!-- Error Message -->
+          <div id="error-message" class="hidden bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg text-sm">
+            Invalid username or password. Please try again.
+          </div>
+
+          <!-- Submit Button -->
+          <button 
+            type="submit"
+            class="w-full bg-gradient-to-r from-blue-700 to-blue-500 text-white font-bold py-3 px-6 rounded-lg hover:from-blue-800 hover:to-blue-600 transition-all transform hover:scale-105 shadow-lg"
+          >
+            Sign In
+          </button>
+
+        </form>
+
+        <!-- Additional Links -->
+        <div class="mt-6 text-center">
+          <a href="index.html" class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
+            ← Back to Main Website
+          </a>
+        </div>
+      </div>
+  </div>
+
+  <script>
+    // CEO credentials
+    const adminCredentials = {
+      email: 'ceo@aribaimpex.qzz.io',
+      password: 'Head@2026',
+      name: 'CEO',
+      role: 'admin'
+    };
+
+    // Toggle password visibility
+    document.getElementById('toggle-password').addEventListener('click', function() {
+      const passwordInput = document.getElementById('password');
+      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    });
+
+    // Handle login
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value.trim().toLowerCase();
+      const password = document.getElementById('password').value;
+      const rememberMe = document.getElementById('remember-me').checked;
+      const errorMessage = document.getElementById('error-message');
+      
+      // Get staff list
+      const staffList = JSON.parse(localStorage.getItem('staffList') || '[]');
+      
+      // Check admin login
+      if (email === adminCredentials.email && password === adminCredentials.password) {
+        const loginData = {
+          email: email,
+          name: adminCredentials.name,
+          role: 'admin',
+          loginTime: new Date().toISOString(),
+          lastActivity: new Date().toISOString()
+        };
+        
+        sessionStorage.setItem('staffSession', JSON.stringify(loginData));
+        if (rememberMe) {
+          localStorage.setItem('staffSession', JSON.stringify(loginData));
+        }
+        
+        updateOnlineStaff(loginData);
+        window.location.href = 'staff-dashboard.html';
+        return;
+      }
+      
+      // Check staff login
+      const staff = staffList.find(s => s.email.toLowerCase() === email && s.password === password);
+      if (staff) {
+        const loginData = {
+          email: email,
+          name: staff.name,
+          role: 'staff',
+          position: staff.position,
+          loginTime: new Date().toISOString(),
+          lastActivity: new Date().toISOString()
+        };
+        
+        sessionStorage.setItem('staffSession', JSON.stringify(loginData));
+        if (rememberMe) {
+          localStorage.setItem('staffSession', JSON.stringify(loginData));
+        }
+        
+        updateOnlineStaff(loginData);
+        window.location.href = 'staff-portal.html';
+        return;
+      }
+      
+      // Failed login
+      errorMessage.classList.remove('hidden');
+      document.getElementById('login-form').classList.add('shake');
+      
+      setTimeout(() => {
+        document.getElementById('login-form').classList.remove('shake');
+      }, 500);
+    });
+
+    // Update online staff list in localStorage
+    function updateOnlineStaff(loginData) {
+      let onlineStaff = JSON.parse(localStorage.getItem('onlineStaff') || '[]');
+      
+      // Remove any existing entry for this user
+      onlineStaff = onlineStaff.filter(staff => staff.email !== loginData.email);
+      
+      // Add new entry
+      onlineStaff.push(loginData);
+      
+      localStorage.setItem('onlineStaff', JSON.stringify(onlineStaff));
+    }
+
+    // Check for existing session
+    window.addEventListener('load', () => {
+      const session = sessionStorage.getItem('staffSession') || localStorage.getItem('staffSession');
+      if (session) {
+        const loginData = JSON.parse(session);
+        if (loginData.role === 'admin') {
+          window.location.href = 'staff-dashboard.html';
+        } else {
+          window.location.href = 'staff-portal.html';
+        }
+      }
+    });
+
+    // Dark mode support
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark');
+    }
+  </script>
+
+</body>
+</html>
