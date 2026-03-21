@@ -106,6 +106,32 @@
     font-size: 0.95rem;
     margin-bottom: 30px;
   }
+
+  /* Service banner — shown when ?service= is in URL */
+  .service-banner {
+    display: none;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
+    border: 1px solid #c5d0ff;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .service-banner.visible { display: block; }
+  .service-banner-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #667eea;
+    margin-bottom: 4px;
+  }
+  .service-banner-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #333;
+  }
+
   .payment-methods {
     display: flex;
     justify-content: center;
@@ -128,10 +154,7 @@
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   }
-  .payment-icon {
-    font-size: 2rem;
-    margin-bottom: 8px;
-  }
+  .payment-icon { font-size: 2rem; margin-bottom: 8px; }
   .payment-label {
     font-size: 0.85rem;
     font-weight: 600;
@@ -145,8 +168,7 @@
     text-align: center;
     margin: 25px 0;
   }
-  .divider::before,
-  .divider::after {
+  .divider::before, .divider::after {
     content: '';
     flex: 1;
     border-bottom: 2px solid #e0e0e0;
@@ -188,10 +210,14 @@
     box-shadow: 0 0 0 4px rgba(102,126,234,0.1);
     transform: translateY(-2px);
   }
-  .form-control:focus + .currency-symbol {
-    color: #764ba2;
-    transform: translateY(-50%) scale(1.1);
+
+  /* Prefilled state — highlighted border */
+  .form-control.prefilled {
+    border-color: #667eea;
+    background: #f8f9ff;
+    color: #333;
   }
+
   .amount-suggestions {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -242,30 +268,20 @@
   .btn-custom::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
     border-radius: 50%;
     background: rgba(255,255,255,0.2);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
   }
-  .btn-custom:hover::before {
-    width: 300px;
-    height: 300px;
-  }
+  .btn-custom:hover::before { width: 300px; height: 300px; }
   .btn-custom:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(102,126,234,0.5);
   }
-  .btn-custom:active {
-    transform: translateY(-1px);
-  }
-  .btn-custom span {
-    position: relative;
-    z-index: 1;
-  }
+  .btn-custom:active { transform: translateY(-1px); }
+  .btn-custom span { position: relative; z-index: 1; }
   .secure-info {
     background: #f8f9fa;
     padding: 20px;
@@ -282,10 +298,7 @@
     font-weight: 500;
     margin-bottom: 12px;
   }
-  .secure-icon {
-    color: #4caf50;
-    font-size: 1.3rem;
-  }
+  .secure-icon { color: #4caf50; font-size: 1.3rem; }
   .security-features {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -299,12 +312,7 @@
     font-size: 0.85rem;
     color: #666;
   }
-  .security-item::before {
-    content: '✓';
-    color: #4caf50;
-    font-weight: bold;
-    font-size: 1rem;
-  }
+  .security-item::before { content: '✓'; color: #4caf50; font-weight: bold; font-size: 1rem; }
   .error-message {
     color: #f44336;
     font-size: 0.9rem;
@@ -318,11 +326,7 @@
     padding: 10px;
     border-radius: 8px;
   }
-  .error-message.show {
-    opacity: 1;
-    height: auto;
-    margin-top: 10px;
-  }
+  .error-message.show { opacity: 1; height: auto; margin-top: 10px; }
   .trusted-by {
     text-align: center;
     margin-top: 20px;
@@ -336,36 +340,14 @@
     text-transform: uppercase;
     letter-spacing: 1px;
   }
-  .trust-badges {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .trust-badge {
-    font-size: 0.8rem;
-    color: #666;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .trust-badge-icon {
-    font-size: 1.2rem;
-  }
+  .trust-badges { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .trust-badge { font-size: 0.8rem; color: #666; display: flex; align-items: center; gap: 5px; }
+  .trust-badge-icon { font-size: 1.2rem; }
   @media (max-width: 576px) {
-    .payment-container {
-      margin: 20px;
-      padding: 30px 25px;
-    }
-    .header h1 {
-      font-size: 1.5rem;
-    }
-    .amount-suggestions {
-      grid-template-columns: 1fr;
-    }
-    .security-features {
-      grid-template-columns: 1fr;
-    }
+    .payment-container { margin: 20px; padding: 30px 25px; }
+    .header h1 { font-size: 1.5rem; }
+    .amount-suggestions { grid-template-columns: 1fr; }
+    .security-features { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -379,7 +361,13 @@
 <div class="payment-container">
   <h3>Complete Your Payment</h3>
   <p class="subtitle">Choose your preferred payment method</p>
-  
+
+  <!-- Service banner (shown when redirected from Zenvyte) -->
+  <div class="service-banner" id="service-banner">
+    <div class="service-banner-label">Zenvyte Labs · Service Selected</div>
+    <div class="service-banner-name" id="service-banner-name"></div>
+  </div>
+
   <!-- Payment Methods -->
   <div class="payment-methods">
     <div class="payment-method-badge">
@@ -402,10 +390,10 @@
   
   <!-- Quick Amount Selection -->
   <div class="amount-suggestions">
-    <div class="amount-chip" data-amount="500">₹500</div>
-    <div class="amount-chip" data-amount="1000">₹1,000</div>
-    <div class="amount-chip" data-amount="2000">₹2,000</div>
-    <div class="amount-chip" data-amount="5000">₹5,000</div>
+    <div class="amount-chip" data-amount="149">₹149</div>
+    <div class="amount-chip" data-amount="199">₹199</div>
+    <div class="amount-chip" data-amount="349">₹349</div>
+    <div class="amount-chip" data-amount="799">₹799</div>
   </div>
   
   <!-- Custom Amount Input -->
@@ -439,18 +427,9 @@
   <div class="trusted-by">
     <div class="trusted-by-label">Trusted Payment Partner</div>
     <div class="trust-badges">
-      <div class="trust-badge">
-        <span class="trust-badge-icon">✓</span>
-        <span>RBI Approved</span>
-      </div>
-      <div class="trust-badge">
-        <span class="trust-badge-icon">✓</span>
-        <span>500+ Happy Clients</span>
-      </div>
-      <div class="trust-badge">
-        <span class="trust-badge-icon">✓</span>
-        <span>Instant Refunds</span>
-      </div>
+      <div class="trust-badge"><span class="trust-badge-icon">✓</span><span>RBI Approved</span></div>
+      <div class="trust-badge"><span class="trust-badge-icon">✓</span><span>500+ Happy Clients</span></div>
+      <div class="trust-badge"><span class="trust-badge-icon">✓</span><span>Instant Refunds</span></div>
     </div>
   </div>
 </div>
@@ -462,20 +441,43 @@ const errorMsg = document.getElementById('error-msg');
 const payBtn = document.getElementById('pay-btn');
 const amountChips = document.querySelectorAll('.amount-chip');
 
+// ── AUTO-FILL FROM URL PARAMS ──────────────────────────────────────────────
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const urlAmount = params.get('amount');
+  const urlService = params.get('service');
+
+  if (urlAmount && !isNaN(parseFloat(urlAmount)) && parseFloat(urlAmount) > 0) {
+    const val = parseFloat(urlAmount);
+    amountInput.value = val;
+    amountInput.classList.add('prefilled');
+
+    // Highlight matching chip if it exists, otherwise deselect all
+    amountChips.forEach(chip => {
+      if (parseFloat(chip.getAttribute('data-amount')) === val) {
+        chip.classList.add('selected');
+      }
+    });
+  }
+
+  if (urlService) {
+    const banner = document.getElementById('service-banner');
+    const bannerName = document.getElementById('service-banner-name');
+    bannerName.textContent = decodeURIComponent(urlService);
+    banner.classList.add('visible');
+  }
+})();
+// ──────────────────────────────────────────────────────────────────────────
+
 // Quick amount selection
 amountChips.forEach(chip => {
   chip.addEventListener('click', function() {
     const amount = this.getAttribute('data-amount');
     amountInput.value = amount;
+    amountInput.classList.remove('prefilled');
     errorMsg.classList.remove('show');
-    
-    // Remove selected class from all chips
     amountChips.forEach(c => c.classList.remove('selected'));
-    
-    // Add selected class to clicked chip
     this.classList.add('selected');
-    
-    // Focus input
     amountInput.focus();
   });
 });
@@ -483,19 +485,27 @@ amountChips.forEach(chip => {
 // Clear error and selected state on manual input
 amountInput.addEventListener('input', function() {
   errorMsg.classList.remove('show');
+  amountInput.classList.remove('prefilled');
   amountChips.forEach(c => c.classList.remove('selected'));
+
+  // Re-highlight chip if typed value matches one
+  const val = parseFloat(this.value);
+  amountChips.forEach(chip => {
+    if (parseFloat(chip.getAttribute('data-amount')) === val) {
+      chip.classList.add('selected');
+    }
+  });
 });
 
 // Payment handler
 payBtn.addEventListener('click', function() {
   const amountValue = parseFloat(amountInput.value);
   
-  if(!amountValue || amountValue <= 0 || isNaN(amountValue)){
+  if (!amountValue || amountValue <= 0 || isNaN(amountValue)) {
     errorMsg.classList.add('show');
     amountInput.style.borderColor = '#f44336';
+    amountInput.classList.remove('prefilled');
     amountInput.focus();
-    
-    // Shake animation
     amountInput.animate([
       { transform: 'translateX(0)' },
       { transform: 'translateX(-10px)' },
@@ -503,75 +513,56 @@ payBtn.addEventListener('click', function() {
       { transform: 'translateX(-10px)' },
       { transform: 'translateX(10px)' },
       { transform: 'translateX(0)' }
-    ], {
-      duration: 400,
-      easing: 'ease-in-out'
-    });
-    
-    setTimeout(() => {
-      amountInput.style.borderColor = '#e0e0e0';
-    }, 2000);
+    ], { duration: 400, easing: 'ease-in-out' });
+    setTimeout(() => { amountInput.style.borderColor = '#e0e0e0'; }, 2000);
     return;
   }
-  
-  // Button loading state
+
+  // Get service name from URL param for Razorpay description
+  const params = new URLSearchParams(window.location.search);
+  const serviceName = params.get('service') ? decodeURIComponent(params.get('service')) : 'Payment';
+
   payBtn.innerHTML = '<span>⏳ Processing...</span>';
   payBtn.style.pointerEvents = 'none';
   payBtn.style.opacity = '0.8';
   
   const options = {
     key: "rzp_live_S6cBvQpBVeW83r",
-    amount: Math.round(amountValue * 100), // Convert to paise
+    amount: Math.round(amountValue * 100),
     currency: "INR",
     name: "Ariba Impex",
-    description: "Payment for Premium Bags",
+    description: serviceName,
     image: "logo.jpg",
-    handler: function(response){
-      // Success animation
+    handler: function(response) {
       payBtn.innerHTML = '<span>✓ Payment Successful!</span>';
       payBtn.style.background = 'linear-gradient(135deg, #4caf50 0%, #45a049 100%)';
-      
-      // Confetti effect (simple)
-      for(let i = 0; i < 50; i++) {
-        createConfetti();
-      }
-      
+      for (let i = 0; i < 50; i++) createConfetti();
       setTimeout(() => {
-        alert("✓ Payment Successful!\n\nPayment ID: " + response.razorpay_payment_id + "\n\nThank you for your payment. You will receive a confirmation email shortly.");
-        
-        // Reset form
+        alert("✓ Payment Successful!\n\nPayment ID: " + response.razorpay_payment_id + "\n\nThank you for your payment. You will receive a confirmation shortly.\n\nPlease open a Discord ticket at discord.gg/3HwVsgER3B to start your Zenvyte Labs order.");
         payBtn.innerHTML = '<span>🔒 Proceed to Secure Payment</span>';
         payBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
         payBtn.style.pointerEvents = 'auto';
         payBtn.style.opacity = '1';
         amountInput.value = '';
+        amountInput.classList.remove('prefilled');
         amountChips.forEach(c => c.classList.remove('selected'));
       }, 2000);
     },
     modal: {
       ondismiss: function() {
-        // Reset button if payment modal is closed
         payBtn.innerHTML = '<span>🔒 Proceed to Secure Payment</span>';
         payBtn.style.pointerEvents = 'auto';
         payBtn.style.opacity = '1';
       }
     },
-    prefill: {
-      name: "",
-      email: "",
-      contact: ""
-    },
-    theme: {
-      color: "#667eea"
-    }
+    prefill: { name: "", email: "", contact: "" },
+    theme: { color: "#667eea" }
   };
   
   const rzp = new Razorpay(options);
-  
-  rzp.on('payment.failed', function (response){
+  rzp.on('payment.failed', function(response) {
     payBtn.innerHTML = '<span>❌ Payment Failed</span>';
     payBtn.style.background = 'linear-gradient(135deg, #f44336 0%, #d32f2f 100%)';
-    
     setTimeout(() => {
       alert("Payment Failed!\n\nError: " + response.error.description);
       payBtn.innerHTML = '<span>🔒 Proceed to Secure Payment</span>';
@@ -586,43 +577,19 @@ payBtn.addEventListener('click', function() {
 
 // Enter key support
 amountInput.addEventListener('keypress', function(e) {
-  if(e.key === 'Enter') {
-    payBtn.click();
-  }
+  if (e.key === 'Enter') payBtn.click();
 });
 
-// Simple confetti effect
 function createConfetti() {
   const confetti = document.createElement('div');
-  confetti.style.position = 'fixed';
-  confetti.style.width = '10px';
-  confetti.style.height = '10px';
-  confetti.style.backgroundColor = ['#667eea', '#764ba2', '#4caf50', '#ffc107', '#f44336'][Math.floor(Math.random() * 5)];
-  confetti.style.left = Math.random() * 100 + '%';
-  confetti.style.top = '-10px';
-  confetti.style.borderRadius = '50%';
-  confetti.style.zIndex = '9999';
-  confetti.style.pointerEvents = 'none';
+  confetti.style.cssText = `position:fixed;width:10px;height:10px;background:${['#667eea','#764ba2','#4caf50','#ffc107','#f44336'][Math.floor(Math.random()*5)]};left:${Math.random()*100}%;top:-10px;border-radius:50%;z-index:9999;pointer-events:none`;
   document.body.appendChild(confetti);
-  
   const fall = confetti.animate([
     { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-    { transform: `translateY(${window.innerHeight + 20}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-  ], {
-    duration: 2000 + Math.random() * 1000,
-    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-  });
-  
+    { transform: `translateY(${window.innerHeight+20}px) rotate(${Math.random()*360}deg)`, opacity: 0 }
+  ], { duration: 2000 + Math.random() * 1000, easing: 'cubic-bezier(0.25,0.46,0.45,0.94)' });
   fall.onfinish = () => confetti.remove();
 }
-
-// Format number input with commas
-amountInput.addEventListener('blur', function() {
-  if(this.value) {
-    const formatted = parseFloat(this.value).toLocaleString('en-IN');
-    // Don't actually change the value, just for display
-  }
-});
 </script>
 </body>
 </html>
