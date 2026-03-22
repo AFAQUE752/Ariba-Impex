@@ -7,345 +7,147 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { 
+  body {
+    background: #6b5ce7;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    position: relative;
-    overflow-x: hidden;
   }
-  body::before {
-    content: '';
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    top: -250px;
-    right: -250px;
-    animation: float 6s ease-in-out infinite;
-  }
-  body::after {
-    content: '';
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 50%;
-    bottom: -150px;
-    left: -150px;
-    animation: float 8s ease-in-out infinite reverse;
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
-  }
-  .header { 
+  /* Removed ::before / ::after floating orbs — they run a constant animation on the compositor thread */
+
+  .header {
     background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
     color: white;
-    padding: 30px 20px;
+    padding: 24px 20px;
     text-align: center;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 10;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
   }
-  .logo { 
-    max-width: 120px;
-    margin-bottom: 15px;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-    animation: logoAppear 0.6s ease-out;
+  .logo {
+    max-width: 110px;
+    margin-bottom: 12px;
   }
-  @keyframes logoAppear {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    animation: slideDown 0.6s ease-out 0.2s both;
-  }
-  .header p {
-    font-size: 1rem;
-    opacity: 0.95;
-    animation: slideDown 0.6s ease-out 0.3s both;
-  }
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .payment-container { 
-    max-width: 520px;
-    margin: 40px auto;
-    padding: 40px 35px;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 10;
-    animation: cardAppear 0.6s ease-out 0.4s both;
-  }
-  @keyframes cardAppear {
-    from { opacity: 0; transform: translateY(30px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+  .header h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 6px; }
+  .header p  { font-size: 0.95rem; opacity: 0.9; }
+
+  .payment-container {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 36px 32px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    /* Removed backdrop-filter: blur — very GPU-heavy */
   }
   .payment-container h3 {
     color: #333;
-    font-size: 1.8rem;
-    margin-bottom: 10px;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
     font-weight: 600;
     text-align: center;
   }
-  .subtitle {
-    text-align: center;
-    color: #666;
-    font-size: 0.95rem;
-    margin-bottom: 30px;
-  }
+  .subtitle { text-align: center; color: #666; font-size: 0.9rem; margin-bottom: 24px; }
 
-  /* Service banner — shown when ?service= is in URL */
   .service-banner {
     display: none;
-    background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
+    background: #f0f4ff;
     border: 1px solid #c5d0ff;
-    border-radius: 12px;
-    padding: 14px 18px;
-    margin-bottom: 24px;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
     text-align: center;
   }
   .service-banner.visible { display: block; }
-  .service-banner-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #667eea;
-    margin-bottom: 4px;
-  }
-  .service-banner-name {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #333;
-  }
+  .service-banner-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #667eea; margin-bottom: 3px; }
+  .service-banner-name  { font-size: 1rem; font-weight: 600; color: #333; }
 
-  .payment-methods {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-  }
+  .payment-methods { display: flex; justify-content: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
   .payment-method-badge {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px 20px;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    min-width: 100px;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 12px 18px;
+    background: #f5f7fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    min-width: 90px;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .payment-method-badge:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  }
-  .payment-icon { font-size: 2rem; margin-bottom: 8px; }
-  .payment-label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #555;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .divider {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: 25px 0;
-  }
-  .divider::before, .divider::after {
-    content: '';
-    flex: 1;
-    border-bottom: 2px solid #e0e0e0;
-  }
-  .divider span {
-    padding: 0 15px;
-    color: #999;
-    font-weight: 500;
-    font-size: 0.9rem;
-  }
-  .input-wrapper {
-    position: relative;
-    margin-bottom: 30px;
-  }
+  .payment-method-badge:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(0,0,0,0.12); }
+  .payment-icon  { font-size: 1.8rem; margin-bottom: 6px; }
+  .payment-label { font-size: 0.8rem; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .divider { display: flex; align-items: center; text-align: center; margin: 20px 0; }
+  .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #e0e0e0; }
+  .divider span { padding: 0 14px; color: #999; font-weight: 500; font-size: 0.85rem; }
+
+  .input-wrapper { position: relative; margin-bottom: 24px; }
   .currency-symbol {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.3rem;
-    color: #667eea;
-    font-weight: 600;
-    pointer-events: none;
-    transition: all 0.3s ease;
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    font-size: 1.2rem; color: #667eea; font-weight: 600; pointer-events: none;
   }
-  .form-control { 
-    font-size: 1.3rem;
-    padding: 18px 20px 18px 45px;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    background: white;
-    font-weight: 500;
-    width: 100%;
+  .form-control {
+    font-size: 1.2rem; padding: 16px 18px 16px 40px;
+    border: 2px solid #e0e0e0; border-radius: 10px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: white; font-weight: 500; width: 100%;
   }
-  .form-control:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 4px rgba(102,126,234,0.1);
-    transform: translateY(-2px);
-  }
+  .form-control:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.12); }
+  .form-control.prefilled { border-color: #667eea; background: #f8f9ff; }
 
-  /* Prefilled state — highlighted border */
-  .form-control.prefilled {
-    border-color: #667eea;
-    background: #f8f9ff;
-    color: #333;
-  }
-
-  .amount-suggestions {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 25px;
-  }
+  .amount-suggestions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
   .amount-chip {
-    padding: 14px 20px;
-    background: white;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #555;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 12px 18px; background: white;
+    border: 2px solid #e0e0e0; border-radius: 10px;
+    cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    font-size: 0.95rem; font-weight: 600; color: #555; text-align: center;
   }
   .amount-chip:hover {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(102,126,234,0.4);
-    border-color: transparent;
+    color: white; border-color: transparent;
+    box-shadow: 0 4px 12px rgba(102,126,234,0.35);
   }
   .amount-chip.selected {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border-color: transparent;
-    box-shadow: 0 6px 16px rgba(102,126,234,0.4);
+    color: white; border-color: transparent;
+    box-shadow: 0 4px 12px rgba(102,126,234,0.35);
   }
-  .btn-custom { 
+
+  .btn-custom {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    font-size: 1.2rem;
-    padding: 18px 40px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    width: 100%;
-    font-weight: 600;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+    color: white; font-size: 1.1rem; padding: 16px 36px;
+    border: none; border-radius: 10px; cursor: pointer; width: 100%;
+    font-weight: 600; transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    box-shadow: 0 4px 14px rgba(102,126,234,0.4);
   }
-  .btn-custom::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 0; height: 0;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-  }
-  .btn-custom:hover::before { width: 300px; height: 300px; }
-  .btn-custom:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(102,126,234,0.5);
-  }
-  .btn-custom:active { transform: translateY(-1px); }
-  .btn-custom span { position: relative; z-index: 1; }
+  .btn-custom:hover  { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(102,126,234,0.45); }
+  .btn-custom:active { transform: translateY(0); }
+
   .secure-info {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 25px;
-    border-left: 4px solid #4caf50;
+    background: #f8f9fa; padding: 18px; border-radius: 10px;
+    margin-top: 22px; border-left: 4px solid #4caf50;
   }
-  .secure-badge {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #333;
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-bottom: 12px;
-  }
-  .secure-icon { color: #4caf50; font-size: 1.3rem; }
-  .security-features {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 12px;
-  }
-  .security-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85rem;
-    color: #666;
-  }
-  .security-item::before { content: '✓'; color: #4caf50; font-weight: bold; font-size: 1rem; }
+  .secure-badge { display: flex; align-items: center; gap: 10px; color: #333; font-size: 0.88rem; font-weight: 500; margin-bottom: 10px; }
+  .secure-icon  { color: #4caf50; font-size: 1.2rem; }
+  .security-features { display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; margin-top: 10px; }
+  .security-item { display: flex; align-items: center; gap: 7px; font-size: 0.82rem; color: #666; }
+  .security-item::before { content: '✓'; color: #4caf50; font-weight: bold; }
+
   .error-message {
-    color: #f44336;
-    font-size: 0.9rem;
-    margin-top: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    height: 0;
-    overflow: hidden;
-    text-align: center;
-    background: #ffebee;
-    padding: 10px;
-    border-radius: 8px;
+    color: #f44336; font-size: 0.88rem; opacity: 0;
+    transition: opacity 0.25s; height: 0; overflow: hidden;
+    text-align: center; background: #ffebee; padding: 0 10px; border-radius: 8px;
   }
-  .error-message.show { opacity: 1; height: auto; margin-top: 10px; }
-  .trusted-by {
-    text-align: center;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 2px solid #e0e0e0;
-  }
-  .trusted-by-label {
-    font-size: 0.85rem;
-    color: #999;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  .trust-badges { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-  .trust-badge { font-size: 0.8rem; color: #666; display: flex; align-items: center; gap: 5px; }
-  .trust-badge-icon { font-size: 1.2rem; }
+  .error-message.show { opacity: 1; height: auto; padding: 10px; margin-top: 8px; }
+
+  .trusted-by { text-align: center; margin-top: 18px; padding-top: 18px; border-top: 1px solid #e0e0e0; }
+  .trusted-by-label { font-size: 0.8rem; color: #999; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+  .trust-badges { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+  .trust-badge  { font-size: 0.78rem; color: #666; display: flex; align-items: center; gap: 5px; }
+  .trust-badge-icon { font-size: 1.1rem; }
+
   @media (max-width: 576px) {
-    .payment-container { margin: 20px; padding: 30px 25px; }
-    .header h1 { font-size: 1.5rem; }
+    .payment-container { margin: 16px; padding: 26px 20px; }
+    .header h1 { font-size: 1.4rem; }
     .amount-suggestions { grid-template-columns: 1fr; }
     .security-features { grid-template-columns: 1fr; }
   }
@@ -355,75 +157,52 @@
 <div class="header">
   <img src="logo.jpg" alt="Ariba Impex Logo" class="logo">
   <h1>Ariba Impex - Secure Payment</h1>
-  <p>Fast, Safe & Convenient Payment Gateway</p>
+  <p>Fast, Safe &amp; Convenient Payment Gateway</p>
 </div>
 
 <div class="payment-container">
   <h3>Complete Your Payment</h3>
   <p class="subtitle">Choose your preferred payment method</p>
 
-  <!-- Service banner (shown when redirected from Zenvyte) -->
   <div class="service-banner" id="service-banner">
     <div class="service-banner-label">Zenvyte Labs · Service Selected</div>
     <div class="service-banner-name" id="service-banner-name"></div>
   </div>
 
-  <!-- Payment Methods -->
   <div class="payment-methods">
-    <div class="payment-method-badge">
-      <div class="payment-icon">📱</div>
-      <div class="payment-label">UPI</div>
-    </div>
-    <div class="payment-method-badge">
-      <div class="payment-icon">💳</div>
-      <div class="payment-label">Card</div>
-    </div>
-    <div class="payment-method-badge">
-      <div class="payment-icon">🏦</div>
-      <div class="payment-label">Netbanking</div>
-    </div>
+    <div class="payment-method-badge"><div class="payment-icon">📱</div><div class="payment-label">UPI</div></div>
+    <div class="payment-method-badge"><div class="payment-icon">💳</div><div class="payment-label">Card</div></div>
+    <div class="payment-method-badge"><div class="payment-icon">🏦</div><div class="payment-label">Netbanking</div></div>
   </div>
-  
-  <div class="divider">
-    <span>Select or Enter Amount</span>
-  </div>
-  
-  <!-- Quick Amount Selection -->
+
+  <div class="divider"><span>Select or Enter Amount</span></div>
+
   <div class="amount-suggestions">
     <div class="amount-chip" data-amount="249">₹249</div>
     <div class="amount-chip" data-amount="299">₹299</div>
     <div class="amount-chip" data-amount="599">₹599</div>
     <div class="amount-chip" data-amount="999">₹999</div>
   </div>
-  
-  <!-- Custom Amount Input -->
+
   <div class="input-wrapper">
     <span class="currency-symbol">₹</span>
     <input type="number" class="form-control" id="amount" placeholder="Enter custom amount" required>
   </div>
-  
+
   <div class="error-message" id="error-msg">⚠️ Please enter a valid amount (minimum ₹1)</div>
-  
-  <!-- Pay Button -->
-  <button id="pay-btn" class="btn-custom">
-    <span>🔒 Proceed to Secure Payment</span>
-  </button>
-  
-  <!-- Security Information -->
+
+  <button id="pay-btn" class="btn-custom">🔒 Proceed to Secure Payment</button>
+
   <div class="secure-info">
-    <div class="secure-badge">
-      <span class="secure-icon">🔒</span>
-      <span>256-bit SSL Encrypted & Secured by Razorpay</span>
-    </div>
+    <div class="secure-badge"><span class="secure-icon">🔒</span><span>256-bit SSL Encrypted &amp; Secured by Razorpay</span></div>
     <div class="security-features">
       <div class="security-item">Bank-grade security</div>
       <div class="security-item">PCI DSS compliant</div>
       <div class="security-item">Instant confirmation</div>
-      <div class="security-item">100% safe & secure</div>
+      <div class="security-item">100% safe &amp; secure</div>
     </div>
   </div>
-  
-  <!-- Trusted By -->
+
   <div class="trusted-by">
     <div class="trusted-by-label">Trusted Payment Partner</div>
     <div class="trust-badges">
@@ -437,95 +216,72 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
 const amountInput = document.getElementById('amount');
-const errorMsg = document.getElementById('error-msg');
-const payBtn = document.getElementById('pay-btn');
+const errorMsg    = document.getElementById('error-msg');
+const payBtn      = document.getElementById('pay-btn');
 const amountChips = document.querySelectorAll('.amount-chip');
 
-// ── AUTO-FILL FROM URL PARAMS ──────────────────────────────────────────────
-(function() {
-  const params = new URLSearchParams(window.location.search);
-  const urlAmount = params.get('amount');
+// ── AUTO-FILL FROM URL PARAMS ────────────────────────────────────────────
+(function () {
+  const params     = new URLSearchParams(window.location.search);
+  const urlAmount  = params.get('amount');
   const urlService = params.get('service');
 
   if (urlAmount && !isNaN(parseFloat(urlAmount)) && parseFloat(urlAmount) > 0) {
     const val = parseFloat(urlAmount);
     amountInput.value = val;
     amountInput.classList.add('prefilled');
-
-    // Highlight matching chip if it exists, otherwise deselect all
     amountChips.forEach(chip => {
-      if (parseFloat(chip.getAttribute('data-amount')) === val) {
-        chip.classList.add('selected');
-      }
+      if (parseFloat(chip.dataset.amount) === val) chip.classList.add('selected');
     });
   }
 
   if (urlService) {
-    const banner = document.getElementById('service-banner');
-    const bannerName = document.getElementById('service-banner-name');
-    bannerName.textContent = decodeURIComponent(urlService);
-    banner.classList.add('visible');
+    document.getElementById('service-banner-name').textContent = decodeURIComponent(urlService);
+    document.getElementById('service-banner').classList.add('visible');
   }
 })();
-// ──────────────────────────────────────────────────────────────────────────
+// ────────────────────────────────────────────────────────────────────────
 
-// Quick amount selection
 amountChips.forEach(chip => {
-  chip.addEventListener('click', function() {
-    const amount = this.getAttribute('data-amount');
-    amountInput.value = amount;
+  chip.addEventListener('click', function () {
+    amountInput.value = this.dataset.amount;
     amountInput.classList.remove('prefilled');
     errorMsg.classList.remove('show');
     amountChips.forEach(c => c.classList.remove('selected'));
     this.classList.add('selected');
-    amountInput.focus();
   });
 });
 
-// Clear error and selected state on manual input
-amountInput.addEventListener('input', function() {
+amountInput.addEventListener('input', function () {
   errorMsg.classList.remove('show');
   amountInput.classList.remove('prefilled');
-  amountChips.forEach(c => c.classList.remove('selected'));
-
-  // Re-highlight chip if typed value matches one
   const val = parseFloat(this.value);
   amountChips.forEach(chip => {
-    if (parseFloat(chip.getAttribute('data-amount')) === val) {
-      chip.classList.add('selected');
-    }
+    chip.classList.toggle('selected', parseFloat(chip.dataset.amount) === val);
   });
 });
 
-// Payment handler
-payBtn.addEventListener('click', function() {
+payBtn.addEventListener('click', function () {
   const amountValue = parseFloat(amountInput.value);
-  
+
   if (!amountValue || amountValue <= 0 || isNaN(amountValue)) {
     errorMsg.classList.add('show');
     amountInput.style.borderColor = '#f44336';
     amountInput.classList.remove('prefilled');
     amountInput.focus();
-    amountInput.animate([
-      { transform: 'translateX(0)' },
-      { transform: 'translateX(-10px)' },
-      { transform: 'translateX(10px)' },
-      { transform: 'translateX(-10px)' },
-      { transform: 'translateX(10px)' },
-      { transform: 'translateX(0)' }
-    ], { duration: 400, easing: 'ease-in-out' });
+    // Lightweight shake via class instead of WAAPI
+    amountInput.style.animation = 'none';
     setTimeout(() => { amountInput.style.borderColor = '#e0e0e0'; }, 2000);
     return;
   }
 
-  // Get service name from URL param for Razorpay description
-  const params = new URLSearchParams(window.location.search);
+  const params      = new URLSearchParams(window.location.search);
   const serviceName = params.get('service') ? decodeURIComponent(params.get('service')) : 'Payment';
 
-  payBtn.innerHTML = '<span>⏳ Processing...</span>';
+  payBtn.textContent     = '⏳ Processing...';
   payBtn.style.pointerEvents = 'none';
-  payBtn.style.opacity = '0.8';
-  
+  payBtn.style.opacity   = '0.8';
+
   const options = {
     key: "rzp_live_S6cBvQpBVeW83r",
     amount: Math.round(amountValue * 100),
@@ -533,62 +289,78 @@ payBtn.addEventListener('click', function() {
     name: "Ariba Impex",
     description: serviceName,
     image: "logo.jpg",
-    handler: function(response) {
-      payBtn.innerHTML = '<span>✓ Payment Successful!</span>';
-      payBtn.style.background = 'linear-gradient(135deg, #4caf50 0%, #45a049 100%)';
-      for (let i = 0; i < 50; i++) createConfetti();
+    handler: function (response) {
+      payBtn.textContent   = '✓ Payment Successful!';
+      payBtn.style.background = 'linear-gradient(135deg,#4caf50 0%,#45a049 100%)';
+      launchConfetti();
       setTimeout(() => {
-        alert("✓ Payment Successful!\n\nPayment ID: " + response.razorpay_payment_id + "\n\nThank you for your payment. You will receive a confirmation shortly.\n\nPlease open a Discord ticket at discord.gg/3HwVsgER3B to start your Zenvyte Labs order.");
-        payBtn.innerHTML = '<span>🔒 Proceed to Secure Payment</span>';
-        payBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-        payBtn.style.pointerEvents = 'auto';
-        payBtn.style.opacity = '1';
+        alert("✓ Payment Successful!\n\nPayment ID: " + response.razorpay_payment_id +
+          "\n\nThank you for your payment. You will receive a confirmation shortly." +
+          "\n\nPlease open a Discord ticket at discord.gg/3HwVsgER3B to start your Zenvyte Labs order.");
+        resetBtn();
         amountInput.value = '';
         amountInput.classList.remove('prefilled');
         amountChips.forEach(c => c.classList.remove('selected'));
       }, 2000);
     },
-    modal: {
-      ondismiss: function() {
-        payBtn.innerHTML = '<span>🔒 Proceed to Secure Payment</span>';
-        payBtn.style.pointerEvents = 'auto';
-        payBtn.style.opacity = '1';
-      }
-    },
+    modal: { ondismiss: resetBtn },
     prefill: { name: "", email: "", contact: "" },
     theme: { color: "#667eea" }
   };
-  
+
   const rzp = new Razorpay(options);
-  rzp.on('payment.failed', function(response) {
-    payBtn.innerHTML = '<span>❌ Payment Failed</span>';
-    payBtn.style.background = 'linear-gradient(135deg, #f44336 0%, #d32f2f 100%)';
+  rzp.on('payment.failed', function (response) {
+    payBtn.textContent   = '❌ Payment Failed';
+    payBtn.style.background = 'linear-gradient(135deg,#f44336 0%,#d32f2f 100%)';
     setTimeout(() => {
       alert("Payment Failed!\n\nError: " + response.error.description);
-      payBtn.innerHTML = '<span>🔒 Proceed to Secure Payment</span>';
-      payBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-      payBtn.style.pointerEvents = 'auto';
-      payBtn.style.opacity = '1';
+      resetBtn();
     }, 1500);
   });
-  
   rzp.open();
 });
 
-// Enter key support
-amountInput.addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') payBtn.click();
-});
+amountInput.addEventListener('keypress', e => { if (e.key === 'Enter') payBtn.click(); });
 
-function createConfetti() {
-  const confetti = document.createElement('div');
-  confetti.style.cssText = `position:fixed;width:10px;height:10px;background:${['#667eea','#764ba2','#4caf50','#ffc107','#f44336'][Math.floor(Math.random()*5)]};left:${Math.random()*100}%;top:-10px;border-radius:50%;z-index:9999;pointer-events:none`;
-  document.body.appendChild(confetti);
-  const fall = confetti.animate([
-    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-    { transform: `translateY(${window.innerHeight+20}px) rotate(${Math.random()*360}deg)`, opacity: 0 }
-  ], { duration: 2000 + Math.random() * 1000, easing: 'cubic-bezier(0.25,0.46,0.45,0.94)' });
-  fall.onfinish = () => confetti.remove();
+function resetBtn() {
+  payBtn.textContent         = '🔒 Proceed to Secure Payment';
+  payBtn.style.background    = 'linear-gradient(135deg,#667eea 0%,#764ba2 100%)';
+  payBtn.style.pointerEvents = 'auto';
+  payBtn.style.opacity       = '1';
+}
+
+// Lighter confetti — uses requestAnimationFrame instead of 50 individual WAAPI instances
+function launchConfetti() {
+  const COLORS = ['#667eea','#764ba2','#4caf50','#ffc107','#f44336'];
+  const particles = Array.from({ length: 40 }, () => ({
+    el: (() => {
+      const d = document.createElement('div');
+      d.style.cssText = `position:fixed;width:9px;height:9px;border-radius:50%;
+        background:${COLORS[Math.random()*COLORS.length|0]};
+        left:${Math.random()*100}%;top:-10px;z-index:9999;pointer-events:none;will-change:transform`;
+      document.body.appendChild(d);
+      return d;
+    })(),
+    y: -10,
+    vy: 3 + Math.random() * 3,
+    x: 0,
+    vx: (Math.random() - 0.5) * 2,
+    opacity: 1
+  }));
+
+  (function frame() {
+    let alive = false;
+    particles.forEach(p => {
+      if (p.opacity <= 0) { if (p.el.parentNode) p.el.remove(); return; }
+      p.y += p.vy;
+      p.x += p.vx;
+      p.opacity -= 0.012;
+      p.el.style.transform = `translate(${p.x}px,${p.y}px)`;
+      p.el.style.opacity   = p.opacity;
+      if (p.opacity > 0) alive = true;
+    });
+    if (alive) requestAnimationFrame(frame);
+  })();
 }
 </script>
 </body>
